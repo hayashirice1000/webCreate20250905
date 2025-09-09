@@ -1,0 +1,186 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head id="j_idt2"><link type="text/css" rel="stylesheet" href="/Smacare/javax.faces.resource/theme.css.xhtml?ln=primefaces-afterwork"><link type="text/css" rel="stylesheet" href="/Smacare/javax.faces.resource/fa/font-awesome.css.xhtml?ln=primefaces&amp;v=8.0"><link type="text/css" rel="stylesheet" href="/Smacare/javax.faces.resource/eNptjVEOAiEQQ08k_nOCPYAXGKCrswKDzGzCJh7eNTF8-dE0bV_S1rlgpQj1UUqTimrqour7lFc7MmbKfH9YkDGL7bWjHy6R0Y1ChrrCda4rD6QFlND_IW0-XzAMVVmq-pAlPne-_vxLfgDGD0Bu.css.xhtml;jsessionid=O69koVUg6QxP_cqpR25zpE--TF-JNrWYarGGYXdS.ec2amaz-7stn25t?ln=omnifaces.combined&amp;v=1756711929397"><script type="text/javascript" src="/Smacare/javax.faces.resource/eNp1jksKgDAMRE-k3XsbLVGjNolNiwoeXvzgotrNzDB5kBGPDtraglbDHMFv5rZy0F0yt0Km2CFpwlj28KmcMAGFhC1gDUCKTFr9tnm8mdiOEc3jJ8iO8P73pmRH4Gh7c6kuKOfMA_MFZAA.js.xhtml;jsessionid=O69koVUg6QxP_cqpR25zpE--TF-JNrWYarGGYXdS.ec2amaz-7stn25t?ln=omnifaces.combined&amp;v=1756711929413" crossorigin="anonymous"></script><script type="text/javascript">if(window.PrimeFaces){PrimeFaces.settings.locale='ja';}</script>
+	<title>SmaCare</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="content-language" content="ja">
+	
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	
+	
+	<meta name="robots" content="noindex">
+	
+	
+	
+	<meta name="viewport" content="width=1366">
+	<script src="/Smacare/resources/js/jquery.dataTables.min.js"></script>
+	<script src="/Smacare/resources/js/dataTables.fixedHeader.min.js"></script>
+	
+	
+	
+	<script src="/Smacare/resources/js/documentUtils.js?date=190910"></script>
+	<script src="/Smacare/resources/js/wing.js?date=221017"></script>
+	
+	
+	
+ 	
+ 	<script src="/Smacare/resources/js/quil.js?date=230510"></script>
+ 	
+	
+	
+	<link rel="stylesheet" href="/Smacare/resources/css/icon.css">
+	<link rel="icon" href="/Smacare/resources/images/favicon.ico">
+	<style>
+		.ui-widget-content {
+			background: white;
+		}
+		.ui-widget-header {
+			background-color: #689F38;
+		}
+		.ui-state-default {
+		
+		}
+		html.lb-disable-scrolling {
+		    overflow: hidden;
+		    position: static;
+		    height: 100vh;
+		    width: 100vw;
+		}
+		td, th {
+			padding: 0px;
+		}
+	</style></head><body>
+	<script type="text/javascript">
+		
+		PrimeFaces.env.touch = false;
+		window.onresize = conditionLabelResize;
+		var windowList = [];
+		function closeSubWindow() {
+			for (var i = 0; i < windowList.length; i++) {
+				if (typeof window != "undefined") {
+					window.close();
+				}
+			}
+		}
+		
+		// DataTableの一時保管
+		var tables = new Array();
+	</script>
+		<style>
+			.blockUI {
+				z-index: 10000 !important;
+			}
+		</style>
+		<script type="text/javascript">
+			function downloadStart() {
+				PF('blockUIWidget').block();;
+			}
+			function downloadEnd() {
+				const blockUI = PF('blockUIWidget'); if (blockUI != null) blockUI.unblock();;
+			}
+		</script><div id="j_idt15_content" style="display: none;"><table>
+<tbody>
+<tr>
+<td><img src="/Smacare/javax.faces.resource/icon_loader.gif.xhtml;jsessionid=O69koVUg6QxP_cqpR25zpE--TF-JNrWYarGGYXdS.ec2amaz-7stn25t?ln=images" style="margin-right: 12px; vertical-align: middle;"></td>
+<td><span style="white-space: nowrap;">Please wait...</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+	
+	<style>
+	</style>
+	<script type="text/javascript">
+		function setFocus(id, dummy) {
+			var ele = document.getElementById(id);
+			ele.focus();
+			dummy.blur();
+		}
+	</script><div id="wingConfirmDialog" class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-shadow ui-hidden-container wingConfirmDialog ui-draggable" role="dialog" aria-describedby="wingConfirmDialog_content" aria-hidden="true" aria-modal="true" aria-labelledby="wingConfirmDialog_title" style="width: auto; height: auto;"><div class="ui-dialog-titlebar ui-widget-header ui-helper-clearfix ui-corner-top ui-draggable-handle"><span id="wingConfirmDialog_title" class="ui-dialog-title">確認</span></div><div class="ui-dialog-content ui-widget-content" id="wingConfirmDialog_content" style="height: auto;">
+		
+		<div class="confirm-content">
+			<div class="flex-horizontal">
+				<div class="interval-narrow">
+					<i class="fa fa-info-circle"></i>
+				</div>
+				<div>
+				</div>
+			</div>
+		</div><div id="wing-confirm-footer" class="ui-outputpanel ui-widget flex-horizontal confirm-footer"><span id="j_idt22"></span><script type="text/javascript">$(function(){PrimeFaces.focus(null, 'wing-confirm-footer');});</script><input id="j_idt23" name="j_idt23" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all dummy-inputtext" tabindex="-1" onfocus="setFocus('wingConfirmOK', this)" role="textbox" aria-disabled="false" aria-readonly="false"><a id="wingConfirmOK" href="#" class="ui-commandlink ui-widget ui-button-dialog-normal ui-button-dialog-common" onclick="PrimeFaces.ab({s:&quot;wingConfirmOK&quot;,p:&quot;wingConfirmOK&quot;});return false;">
+				<i class="fa fa-check"></i><label id="j_idt25" class="ui-outputlabel ui-widget">OK</label></a></div></div></div><div id="wingQuestionDialog" class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-shadow ui-hidden-container wingConfirmDialog ui-draggable" role="dialog" aria-describedby="wingQuestionDialog_content" aria-hidden="true" aria-modal="true" aria-labelledby="wingQuestionDialog_title" style="width: auto; height: auto;"><div class="ui-dialog-titlebar ui-widget-header ui-helper-clearfix ui-corner-top ui-draggable-handle"><span id="wingQuestionDialog_title" class="ui-dialog-title">確認</span></div><div class="ui-dialog-content ui-widget-content" id="wingQuestionDialog_content" style="height: auto;">
+		
+		<div class="confirm-content">
+			<div class="flex-horizontal">
+				<div class="interval-narrow">
+					<i class="fa fa-info-circle"></i>
+				</div>
+				<div>
+				</div>
+			</div>
+		</div><div id="wing-question-footer" class="ui-outputpanel ui-widget flex-horizontal confirm-footer"><span id="j_idt28"></span><script type="text/javascript">$(function(){PrimeFaces.focus(null, 'wing-question-footer');});</script><input id="j_idt29" name="j_idt29" type="text" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all dummy-inputtext" tabindex="-1" onfocus="setFocus('wingQuestionYes', this)" role="textbox" aria-disabled="false" aria-readonly="false"><a id="wingQuestionYes" href="#" class="ui-commandlink ui-widget interval-narrow ui-button-dialog-normal ui-button-dialog-common" onclick="PrimeFaces.ab({s:&quot;wingQuestionYes&quot;,p:&quot;wingQuestionYes&quot;});return false;">
+				<i class="fa fa-check"></i><label id="wingQuestionYesLabel" class="ui-outputlabel ui-widget"></label></a><a id="wingQuestionNo" href="#" class="ui-commandlink ui-widget ui-button-dialog-normal ui-button-dialog-common" onclick="PrimeFaces.ab({s:&quot;wingQuestionNo&quot;,p:&quot;wingQuestionNo&quot;});return false;">
+				<i class="fa fa-times"></i><label id="wingQuestionNoLabel" class="ui-outputlabel ui-widget"></label></a></div></div></div><div id="wingConfirmGlobalDialog" class="ui-confirm-dialog ui-dialog ui-widget ui-widget-content ui-corner-all ui-shadow ui-hidden-container wingConfirmDialog" role="dialog" aria-describedby="wingConfirmGlobalDialog_content" aria-hidden="true" aria-modal="true" aria-labelledby="wingConfirmGlobalDialog_title" style="width: auto; height: auto;"><div class="ui-dialog-titlebar ui-widget-header ui-helper-clearfix ui-corner-top"><span id="wingConfirmGlobalDialog_title" class="ui-dialog-title"></span></div><div class="ui-dialog-content ui-widget-content" id="wingConfirmGlobalDialog_content" style="height: auto;"><span class="ui-icon ui-confirm-dialog-severity"></span><span class="ui-confirm-dialog-message"></span></div><div class="ui-dialog-buttonpane ui-dialog-footer ui-widget-content ui-helper-clearfix"><span id="j_idt32"></span><script type="text/javascript">$(function(){PrimeFaces.focus(null, 'wingConfirmGlobalDialog');});</script><a id="j_idt33" href="#" class="ui-commandlink ui-widget ui-confirmdialog-yes ui-button-dialog-normal ui-button-dialog-common" onclick="PrimeFaces.ab({s:&quot;j_idt33&quot;});return false;" type="button">
+				<i class="fa fa-check"></i><label id="j_idt35" class="ui-outputlabel ui-widget">OK</label></a><a id="j_idt36" href="#" class="ui-commandlink ui-widget ui-confirmdialog-no ui-button-dialog-normal ui-button-dialog-common" onclick="PrimeFaces.ab({s:&quot;j_idt36&quot;});return false;" type="button">
+				<i class="fa fa-times"></i><label id="j_idt38" class="ui-outputlabel ui-widget">キャンセル</label></a></div></div><div id="errorDialog" class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-shadow ui-hidden-container ui-draggable ui-resizable" role="dialog" aria-describedby="errorDialog_content" aria-hidden="true" aria-modal="true" aria-labelledby="errorDialog_title" style="width: 300px; height: auto;"><div class="ui-dialog-titlebar ui-widget-header ui-helper-clearfix ui-corner-top ui-draggable-handle"><span id="errorDialog_title" class="ui-dialog-title">タイムアウト</span><a href="#" class="ui-dialog-titlebar-icon ui-dialog-titlebar-close ui-corner-all" aria-label="Close" role="button"><span class="ui-icon ui-icon-closethick"></span></a></div><div class="ui-dialog-content ui-widget-content" id="errorDialog_content" style="height: auto;"></div><div class="ui-resizable-handle ui-resizable-n" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-s" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-e" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-ne" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-sw" style="z-index: 90;"></div></div><div id="UTL006_timeout" class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-shadow ui-hidden-container ui-draggable ui-resizable" role="dialog" aria-describedby="UTL006_timeout_content" aria-hidden="true" aria-modal="true" aria-labelledby="UTL006_timeout_title" style="width: 300px; height: auto;"><div class="ui-dialog-titlebar ui-widget-header ui-helper-clearfix ui-corner-top ui-draggable-handle"><span id="UTL006_timeout_title" class="ui-dialog-title">タイムアウト</span><a href="#" class="ui-dialog-titlebar-icon ui-dialog-titlebar-close ui-corner-all" aria-label="Close" role="button"><span class="ui-icon ui-icon-closethick"></span></a></div><div class="ui-dialog-content ui-widget-content" id="UTL006_timeout_content" style="height: auto;"></div><div class="ui-resizable-handle ui-resizable-n" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-s" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-e" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-ne" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-sw" style="z-index: 90;"></div></div><div id="UTL002_changePassword" class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-shadow ui-hidden-container ui-draggable ui-resizable" role="dialog" aria-describedby="UTL002_changePassword_content" aria-hidden="true" aria-modal="true" aria-labelledby="UTL002_changePassword_title" style="width: 500px; height: auto;"><div class="ui-dialog-titlebar ui-widget-header ui-helper-clearfix ui-corner-top ui-draggable-handle"><span id="UTL002_changePassword_title" class="ui-dialog-title">パスワード変更</span><a href="#" class="ui-dialog-titlebar-icon ui-dialog-titlebar-close ui-corner-all" aria-label="Close" role="button"><span class="ui-icon ui-icon-closethick"></span></a></div><div class="ui-dialog-content ui-widget-content" id="UTL002_changePassword_content" style="height: 182px;"></div><div class="ui-resizable-handle ui-resizable-n" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-s" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-e" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-ne" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-sw" style="z-index: 90;"></div></div><div id="main" class="ui-outputpanel ui-widget mainClass">
+ 	
+ 	
+<form id="mainForm" name="mainForm" method="post" action="/Smacare/index.xhtml;jsessionid=O69koVUg6QxP_cqpR25zpE--TF-JNrWYarGGYXdS.ec2amaz-7stn25t" enctype="application/x-www-form-urlencoded" style="height:100vh">
+<input type="hidden" name="mainForm" value="mainForm">
+<span id="mainForm:growl"></span><div id="mainForm:j_idt90" class="ui-outputpanel ui-widget sc-main-area"><div id="mainForm:sc-content" class="ui-outputpanel ui-widget flex-center sc-login-content" style="align-items:flex-start;"><div id="mainForm:j_idt91" class="ui-panel ui-widget ui-widget-content ui-corner-all login-panel" data-widget="widget_mainForm_j_idt91"><div id="mainForm:j_idt91_content" class="ui-panel-content ui-widget-content">
+					<div>
+						<img src="../Smacare/resources/images/smacarePlanner_logo_login.jpg" alt="" style="height:40px;">
+						
+					</div>
+						<img src="../Smacare/resources/images/smacare_logo_guidance.png" alt="" style="height:280px; display: block; margin: auto;">
+					
+					<div style="background-color: #d3d3d35c; border: 1px solid;  margin: 1.5em 0 0.5em 0; padding:0.5em 0.5em 0.5em 0.5em; display :none; "><label id="mainForm:j_idt96" class="ui-outputlabel ui-widget">セッションがタイムアウトしました。</label><br><label id="mainForm:j_idt98" class="ui-outputlabel ui-widget">再度、ログインし直して下さい。</label>
+					</div>
+					
+					<div class="add-child-margin login-content"><label id="mainForm:j_idt100" class="ui-outputlabel ui-widget">ログインID</label>
+						<div class="column-justfit-content"><input id="mainForm:userId" name="mainForm:userId" type="email" value="" style="" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all ui-state-filled" autocomplete="" placeholder="" onchange="PrimeFaces.ab({s:&quot;mainForm:userId&quot;,e:&quot;valueChange&quot;,f:&quot;mainForm&quot;,p:&quot;mainForm:userId&quot;});" aria-describedby="mainForm:j_idt102" role="textbox" aria-disabled="false" aria-readonly="false">
+							
+						</div><label id="mainForm:j_idt104" class="ui-outputlabel ui-widget">パスワード</label>
+						<div class="column-justfit-content"><input id="mainForm:password" name="mainForm:password" type="password" class="ui-inputfield ui-password ui-widget ui-state-default ui-corner-all ui-state-filled" role="textbox" aria-disabled="false" aria-readonly="false">
+						</div>
+					</div>
+					<div><button id="mainForm:login" name="mainForm:login" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only ui-button-login" onclick="PrimeFaces.ab({s:&quot;mainForm:login&quot;,f:&quot;mainForm&quot;});return false;" style="width: 100% !important" type="submit" role="button" aria-disabled="false"><span class="ui-button-text ui-c">ログイン</span></button>
+					</div></div></div></div></div><input type="hidden" name="javax.faces.ViewState" id="j_id1:javax.faces.ViewState:0" value="-8624754197510240159:7692486752585886712" autocomplete="off">
+</form>
+		<script type="text/javascript">
+			conditionLabelResize();
+		</script>
+		<script src="/Smacare/resources/js/lightbox.js?date=191008" type="text/javascript"></script></div>
+	<script type="text/javascript">
+		//IEの互換表示で表示させるためのオプション指定
+		lightbox.option({
+			'fitImagesInViewport': true
+		});
+	</script>
+	<script type="text/javascript">
+		
+		function scrollTopFloat() {
+			$("html,body").animate({scrollTop: 0}, 600);
+		}
+		function scrollBottomFloat(){
+			var a = document.documentElement;
+		 	var y = a.scrollHeight - a.clientHeight;
+			$("html,body").animate({scrollTop: y}, 600);
+		}
+		
+		function tableReset() {
+			if ($.fn.DataTable.tables().length && tables.length) {
+				tables.forEach(function(table) {
+					table.fixedHeader.disable();
+					table.destroy();
+	 			});
+			}
+		}
+		function refreshResizeHeight(){};
+		
+		function detectTimeout() {
+			if (location.pathname.includes('index'))
+				window.location.reload();
+			else
+				PF('errorDialog').show();
+		}
+		
+	</script><div id="COM114_welcomeNotification" class="ui-dialog ui-widget ui-widget-content ui-corner-all ui-shadow ui-hidden-container ui-draggable ui-resizable" role="dialog" aria-describedby="COM114_welcomeNotification_content" aria-hidden="true" aria-modal="true" aria-labelledby="COM114_welcomeNotification_title" style="width: 800px; height: auto;"><div class="ui-dialog-titlebar ui-widget-header ui-helper-clearfix ui-corner-top ui-draggable-handle"><span id="COM114_welcomeNotification_title" class="ui-dialog-title">重要なお知らせ</span><a href="#" class="ui-dialog-titlebar-icon ui-dialog-titlebar-close ui-corner-all" aria-label="Close" role="button"><span class="ui-icon ui-icon-closethick"></span></a></div><div class="ui-dialog-content ui-widget-content" id="COM114_welcomeNotification_content" style="height: auto;"></div><div class="ui-resizable-handle ui-resizable-n" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-s" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-e" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-w" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-ne" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-sw" style="z-index: 90;"></div></div><script type="text/javascript">OmniFaces.Unload.init('b33ad578-3922-4379-99a3-c50228c90210')</script>
+<div id="textarea_simulator" style="position: absolute; top: 0px; left: 0px; visibility: hidden;"></div><div class="ui-tooltip ui-tooltip-global ui-widget ui-tooltip-bottom" role="tooltip"><div class="ui-tooltip-arrow"></div><div class="ui-tooltip-text ui-shadow ui-corner-all"></div></div><div class="ui-dialog-docking-zone"></div><div id="mainForm:growl_container" class="ui-growl ui-widget" aria-live="polite" style="z-index: 1001;"></div><div id="mainForm:j_idt102" class="ui-tooltip ui-widget ui-tooltip-bottom" role="tooltip" style="text-align: center"><div class="ui-tooltip-arrow"></div><div class="ui-tooltip-text ui-shadow ui-corner-all"> </div></div><div id="lightboxOverlay" tabindex="-1" class="lightboxOverlay" style="display: none;"></div><div id="lightbox" tabindex="-1" class="lightbox" style="display: none;"><div class="lb-outerContainer"><div class="lb-container"><img class="lb-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt=""><div class="lb-nav"><a class="lb-prev" aria-label="Previous image" src=""></a><a class="lb-next" aria-label="Next image" src=""></a></div><div class="lb-loader"><a class="lb-cancel"></a></div></div></div><div class="lb-dataContainer"><div class="lb-data"><div class="lb-details"><span class="lb-caption"></span><span class="lb-number"></span></div><div class="lb-closeContainer"><a class="lb-close"></a></div></div></div></div></body></html>
