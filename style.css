@@ -1,8 +1,19 @@
 body {
     font-family: Arial, sans-serif;
+    background-color: aliceblue;
     text-align: center;
     margin-top: 50px;
 } 
+
+form{
+    background-color: white;
+    padding: 20px;
+    display: inline-block;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
 
 button {
     padding: 10px 20px;

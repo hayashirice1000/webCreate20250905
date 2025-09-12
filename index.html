@@ -3,15 +3,19 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>はじめてのWebページ</title>
+    <title>ログイン画面</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body style="background-color: aliceblue;">
-    <h1>こんにちは、Web制作!?</h1>
-    <button id="clickMe">押してね💢</button>
-    <a href="firsthtml.html">ページへ戻る</a>
+<body>
+    <h1>勤務表作成App</h1>
 
+    <form action="welcome.html" method="post">
+        <p>ユーザー名 <input type="text" name="username" required></p>
+        <p>パスワード <input type="password" name="password" required></p>
+        <p><input type="submit" value="ログイン"></p>
+    </form>
+    
     <script src="script.js"></script>
 </body>
 
