@@ -18,14 +18,18 @@ def login():# ログインページの表示と処理
         password = request.form["password"]# フォームからパスワードを取得
          # ユーザー名とパスワードの検証
         if username in USERS and USERS[username] == password:
+            # ログイン成功時はウェルカムページへリダイレクト
             return redirect(url_for("welcome", username=username))
         else:
             error = "ユーザー名かパスワードが間違っています。"
+    # ログインページの表示
     return render_template("login.html", error=error)
-
+# ウェルカムページのルーティング
 @app.route("/welcome/<username>")
 def welcome(username):
+    # ウェルカムページの表示
     return render_template("welcome.html", username=username)
-
+# アプリケーションのエントリーポイント
 if __name__ == "__main__":
+    # デバッグモードでアプリケーションを起動
     app.run(debug=True)
