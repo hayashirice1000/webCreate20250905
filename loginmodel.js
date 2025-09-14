@@ -1,10 +1,10 @@
-const express = require("express");
-const session = require("express-session");
-const sqlite3 = require("sqlite3").verbose();
-const bcrypt = require("bcrypt");
+const express = require("express");// Expressフレームワーク
+const session = require("express-session");// セッション管理
+const sqlite3 = require("sqlite3").verbose();// SQLite3データベース
+const bcrypt = require("bcrypt");// パスワードハッシュ化
 
-const app = express();
-const db = new sqlite3.Database("app.db");
+const app = express();// Expressアプリケーション
+const db = new sqlite3.Database("app.db");// SQLiteデータベースファイル
 
 // ミドルウェア設定
 app.use(express.urlencoded({ extended: true }));
