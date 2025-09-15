@@ -7,45 +7,47 @@ const app = express();// Expressアプリケーション
 const db = new sqlite3.Database("app.db");// SQLiteデータベースファイル
 
 // ミドルウェア設定
-app.use(express.urlencoded({ extended: true }));
-app.use(session({
+
+app.use(express.urlencoded({ extended: true }));// フォームデータのパース
+app.use(session({// セッション設定
   secret: "secret-key", // 実運用ではもっと強い秘密鍵を！
-  resave: false,
-  saveUninitialized: true
-}));
+  resave: false,// セッションを常に保存しない
+  saveUninitialized: true// 未初期化セッションを保存
+})); 
 
 // DB初期化（最初に一度だけ実行）
-db.serialize(() => {
+db.serialize(() => {// usersテーブル作成
+  // id, username, passwordカラム
   db.run("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE, password TEXT)");
 });
 
 // サインアップフォーム
-app.get("/signup", (req, res) => {
-  res.send(`
-    <form method="POST" action="/signup">
-      <input type="text" name="username" placeholder="ユーザー名" required><br>
-      <input type="password" name="password" placeholder="パスワード" required><br>
-      <button type="submit">登録</button>
-    </form>
-  `);
-});
+app.get("/signup", (req, res) => {// フォームHTMLを送信
+  res.send(` // 簡易HTMLフォーム
+    <form method="POST" action="/signup"> // フォーム送信先
+      <input type="text" name="username" placeholder="ユーザー名" required><br> // ユーザー名入力
+      <input type="password" name="password" placeholder="パスワード" required><br> // パスワード入力
+      <button type="submit">登録</button> // 送信ボタン
+    </form> // フォーム終了
+  `);// 送信終了
+});// フォーム終了
 
 // サインアップ処理
-app.post("/signup", async (req, res) => {
-  const { username, password } = req.body;
-  const hashedPw = await bcrypt.hash(password, 10);
+app.post("/signup", async (req, res) => { // 非同期関数
+  const { username, password } = req.body; // フォームデータ取得
+  const hashedPw = await bcrypt.hash(password, 10);// パスワードハッシュ化
 
-  db.run("INSERT INTO users (username, password) VALUES (?, ?)", [username, hashedPw], (err) => {
-    if (err) return res.send("このユーザー名は使えません。");
-    res.send("登録成功！<a href='/login'>ログインへ</a>");
-  });
-});
+  db.run("INSERT INTO users (username, password) VALUES (?, ?)", [username, hashedPw], (err) => { // ユーザー登録
+    if (err) return res.send("このユーザー名は使えません。"); // エラー処理
+    res.send("登録成功！<a href='/login'>ログインへ</a>"); // 成功メッセージ
+  });// DB操作終了
+});// サインアップ処理終了
 
 // ログインフォーム
-app.get("/login", (req, res) => {
-  res.send(`
-    <form method="POST" action="/login">
-      <input type="text" name="username" placeholder="ユーザー名" required><br>
+app.get("/login", (req, res) => { // フォームHTMLを送信
+  res.send(` 
+    <form method="POST" action="/login"> 
+      <input type="text" name="username" placeholder="ユーザー名" required><br> 
       <input type="password" name="password" placeholder="パスワード" required><br>
       <button type="submit">ログイン</button>
     </form>
@@ -54,28 +56,31 @@ app.get("/login", (req, res) => {
 });
 
 // ログイン処理
-app.post("/login", (req, res) => {
-  const { username, password } = req.body;
+app.post("/login", (req, res) => { // フォームデータ取得 
+  const { username, password } = req.body; // ユーザー名とパスワード
 
-  db.get("SELECT * FROM users WHERE username = ?", [username], async (err, user) => {
-    if (!user) return res.send("ユーザーが存在しません。");
-    const match = await bcrypt.compare(password, user.password);
-    if (match) {
-      req.session.username = username;
-      res.redirect("/welcome");
-    } else {
+  db.get("SELECT * FROM users WHERE username = ?", [username], async (err, user) => { // ユーザー検索
+    if (!user) return res.send("ユーザーが存在しません。"); // ユーザーが見つからない場合
+    const match = await bcrypt.compare(password, user.password); // パスワード照合
+    if (match) { // パスワードが一致した場合
+      req.session.username = username; // セッションにユーザー名保存
+      res.redirect("/welcome"); // ログイン後ページへリダイレクト
+    } else { // パスワードが一致しない場合
       res.send("パスワードが間違っています。");
-    }
-  });
-});
+    }// 照合終了
+  });// DB操作終了
+});// ログイン処理終了
 
 // ログイン後ページ
-app.get("/welcome", (req, res) => {
-  if (!req.session.username) return res.redirect("/login");
-  res.send(`ようこそ ${req.session.username} さん！`);
-});
+app.get("/welcome", (req, res) => { // セッション確認
+  if (!req.session.username) return res.redirect("/login"); // 未ログインならログインページへ
+  res.send(`ようこそ ${req.session.username} さん！`); // ログイン成功メッセージ
+});// ページ終了
 
 // サーバー起動
-app.listen(3000, () => {
-  console.log("http://localhost:3000 でサーバー起動中");
-});
+app.listen(3000, () => { // ポート3000で起動
+  console.log("http://localhost:3000 でサーバー起動中"); // 起動メッセージ
+}); // サーバー起動終了
+
+// 参考: bcryptの非同期処理に注意
+// 参考: 実運用ではCSRF対策やセキュリティ強化が必要
