@@ -7,10 +7,9 @@ const app = express();// Expressアプリケーション
 const db = new sqlite3.Database("app.db");// SQLiteデータベースファイル
 
 // ミドルウェア設定
-
 app.use(express.urlencoded({ extended: true }));// フォームデータのパース
 app.use(session({// セッション設定
-  secret: "secret-key", // 実運用ではもっと強い秘密鍵を！
+  secret: "secret-key", // Renderを使用するのがよさそう。
   resave: false,// セッションを常に保存しない
   saveUninitialized: true// 未初期化セッションを保存
 })); 
