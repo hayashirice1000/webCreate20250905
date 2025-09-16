@@ -2,6 +2,7 @@ const express = require("express");// Expressフレームワーク
 const session = require("express-session");// セッション管理
 const sqlite3 = require("sqlite3").verbose();// SQLite3データベース
 const bcrypt = require("bcrypt");// パスワードハッシュ化
+const path = require("path");// パス操作
 
 const app = express();// Expressアプリケーション
 const db = new sqlite3.Database("app.db");// SQLiteデータベースファイル
@@ -12,7 +13,7 @@ app.use(session({// セッション設定
   secret: "secret-key", // Renderを使用するのがよさそう。
   resave: false,// セッションを常に保存しない
   saveUninitialized: true// 未初期化セッションを保存
-})); 
+}));
 
 // DB初期化（最初に一度だけ実行）
 db.serialize(() => {// usersテーブル作成
@@ -21,14 +22,16 @@ db.serialize(() => {// usersテーブル作成
 });
 
 // サインアップフォーム
+
+
 app.get("/signup", (req, res) => {// フォームHTMLを送信
   res.send(` // 簡易HTMLフォーム
     <form method="POST" action="/signup"> // フォーム送信先
-      <input type="text" name="username" placeholder="ユーザー名" required><br> // ユーザー名入力
-      <input type="password" name="password" placeholder="パスワード" required><br> // パスワード入力
-      <button type="submit">登録</button> // 送信ボタン
+    <input type="text" name="username" placeholder="ユーザー名" required><br> // ユーザー名入力
+    <input type="password" name="password" placeholder="パスワード" required><br> // パスワード入力
+    <button type="submit">登録</button> // 送信ボタン
     </form> // フォーム終了
-  `);// 送信終了
+    `);// 送信終了
 });// フォーム終了
 
 // サインアップ処理
@@ -43,16 +46,19 @@ app.post("/signup", async (req, res) => { // 非同期関数
 });// サインアップ処理終了
 
 // ログインフォーム
-app.get("/login", (req, res) => { // フォームHTMLを送信
-  res.send(` 
-    <form method="POST" action="/login"> 
-      <input type="text" name="username" placeholder="ユーザー名" required><br> 
-      <input type="password" name="password" placeholder="パスワード" required><br>
-      <button type="submit">ログイン</button>
-    </form>
-    <a href="/signup">新規登録</a>
-  `);
+app.get("/login", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "login.html"));
 });
+// app.get("/login", (req, res) => { // フォームHTMLを送信
+//   res.send(` 
+//     <form method="POST" action="/login"> 
+//     <input type="text" name="username" placeholder="ユーザー名" required><br> 
+//     <input type="password" name="password" placeholder="パスワード" required><br>
+//       <button type="submit">ログイン</button>
+//       </form>
+//       <a href="/signup">新規登録</a>
+//       `);
+// });
 
 // ログイン処理
 app.post("/login", (req, res) => { // フォームデータ取得 
