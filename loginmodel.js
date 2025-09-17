@@ -5,6 +5,9 @@ const bcrypt = require("bcrypt");// パスワードハッシュ化
 const path = require("path");// パス操作
 
 const app = express();// Expressアプリケーション
+app.set("view engine", "ejs");// EJSテンプレートエンジン設定
+app.set("views", path.join(__dirname, "views"));// ビューフォルダ設定
+
 const db = new sqlite3.Database("app.db");// SQLiteデータベースファイル
 
 // ミドルウェア設定
@@ -78,7 +81,7 @@ app.post("/login", (req, res) => { // フォームデータ取得
 // ログイン後ページ
 app.get("/welcome", (req, res) => { // セッション確認
   if (!req.session.username) return res.redirect("/login"); // 未ログインならログインページへ
-  res.send(`ようこそ ${req.session.username} さん！`); // ログイン成功メッセージ
+  res.sendFile(path.join(__dirname,"public","welcome.html"); // ログイン成功ページ送信
 });// ページ終了
 
 // サーバー起動
