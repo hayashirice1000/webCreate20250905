@@ -18,12 +18,15 @@ app.use(session({// セッション設定
 // DB初期化（最初に一度だけ実行）
 db.serialize(() => {// usersテーブル作成
   // id, username, passwordカラム
-  db.run("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE, password TEXT)");
+  db.run("CREATE TABLE 
+    IF NOT EXISTS users (
+      id INTEGER PRIMARY KEY AUTOINCREMENT, 
+      username TEXT UNIQUE, 
+      password TEXT)
+    ");
 });
 
 // サインアップフォーム
-
-
 app.get("/signup", (req, res) => {// フォームHTMLを送信
   res.send(` // 簡易HTMLフォーム
     <form method="POST" action="/signup"> // フォーム送信先
@@ -44,6 +47,7 @@ app.post("/signup", async (req, res) => { // 非同期関数
     res.send("登録成功！<a href='/login'>ログインへ</a>"); // 成功メッセージ
   });// DB操作終了
 });// サインアップ処理終了
+
 
 // ログインフォーム
 app.get("/login", (req, res) => {
