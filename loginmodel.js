@@ -79,10 +79,11 @@ app.post("/login", (req, res) => { // フォームデータ取得
 });// ログイン処理終了
 
 // ログイン後ページ
-app.get("/welcome", (req, res) => { // セッション確認
-  if (!req.session.username) return res.redirect("/login"); // 未ログインならログインページへ
-  res.sendFile(path.join(__dirname,"public","welcome.html"); // ログイン成功ページ送信
-});// ページ終了
+app.get("/welcome", (req, res) => {
+  if (!req.session.username) return res.redirect("/login");
+  res.render("welcome", { username: req.session.username });
+});
+
 
 // サーバー起動
 app.listen(3000, () => { // ポート3000で起動
