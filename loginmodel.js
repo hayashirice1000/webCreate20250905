@@ -18,12 +18,7 @@ app.use(session({// セッション設定
 // DB初期化（最初に一度だけ実行）
 db.serialize(() => {// usersテーブル作成
   // id, username, passwordカラム
-  db.run("CREATE TABLE 
-    IF NOT EXISTS users (
-      id INTEGER PRIMARY KEY AUTOINCREMENT, 
-      username TEXT UNIQUE, 
-      password TEXT)
-    ");
+  db.run("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE, password TEXT)");
 });
 
 // サインアップフォーム
@@ -69,7 +64,7 @@ app.post("/login", (req, res) => { // フォームデータ取得
   const { username, password } = req.body; // ユーザー名とパスワード
 
   db.get("SELECT * FROM users WHERE username = ?", [username], async (err, user) => { // ユーザー検索
-    if (!user) return res.send("ユーザーが存在しません。"); // ユーザーが見つからない場合
+    if (!user) return res.send("ユーザー名またはパスワードが違います"); // ユーザーが見つからない場合
     const match = await bcrypt.compare(password, user.password); // パスワード照合
     if (match) { // パスワードが一致した場合
       req.session.username = username; // セッションにユーザー名保存
