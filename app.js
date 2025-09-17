@@ -51,16 +51,6 @@ app.post("/signup", async (req, res) => { // 非同期関数
 app.get("/login", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "login.html"));
 });
-// app.get("/login", (req, res) => { // フォームHTMLを送信
-//   res.send(` 
-//     <form method="POST" action="/login"> 
-//     <input type="text" name="username" placeholder="ユーザー名" required><br> 
-//     <input type="password" name="password" placeholder="パスワード" required><br>
-//       <button type="submit">ログイン</button>
-//       </form>
-//       <a href="/signup">新規登録</a>
-//       `);
-// });
 
 // ログイン処理
 app.post("/login", (req, res) => { // フォームデータ取得 
