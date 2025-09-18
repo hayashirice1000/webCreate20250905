@@ -25,15 +25,9 @@ db.serialize(() => {// usersテーブル作成
 });
 
 // サインアップフォーム
-app.get("/signup", (req, res) => {// フォームHTMLを送信
-  res.send(` // 簡易HTMLフォーム
-    <form method="POST" action="/signup"> // フォーム送信先
-    <input type="text" name="username" placeholder="ユーザー名" required><br> // ユーザー名入力
-    <input type="password" name="password" placeholder="パスワード" required><br> // パスワード入力
-    <button type="submit">登録</button> // 送信ボタン
-    </form> // フォーム終了
-    `);// 送信終了
-});// フォーム終了
+app.get("/signup", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "signup.html"));
+});
 
 // サインアップ処理
 app.post("/signup", async (req, res) => { // 非同期関数
