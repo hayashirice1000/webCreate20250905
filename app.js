@@ -7,6 +7,8 @@
   const app = express();// Expressアプリケーション
   app.set("view engine", "ejs");// EJSテンプレートエンジン設定
   app.set("views", path.join(__dirname, "views"));// ビューフォルダ設定
+  app.use(express.static(path.join(__dirname, "public")));
+
 
   const db = new sqlite3.Database("app.db");// SQLiteデータベースファイル
 
