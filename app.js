@@ -63,7 +63,8 @@ app.post("/login", (req, res) => { // フォームデータ取得
       req.session.username = username; // セッションにユーザー名保存
       res.redirect("/welcome"); // ログイン後ページへリダイレクト
     } else { // パスワードが一致しない場合
-      res.send("パスワードが間違っています。");
+      // res.send("パスワードが間違っています。");
+      res.render("/login",{ error: "パスワードが間違っています。"}); // ログインページへリダイレクト
     }// 照合終了
   });// DB操作終了
 });// ログイン処理終了
